@@ -4,7 +4,7 @@
 
 source /etc/envvars
 
-if [ ! -f ${PGDATA} ]; then
+if [ ! -d ${PGDATA} ]; then
    mkdir -p ${PGDATA}
    chown -R postgres ${PGDATA}
    sudo -u postgres /usr/lib/postgresql/*/bin/initdb -D ${PGDATA}
@@ -18,4 +18,4 @@ fi
 chown -R postgres ${PGDATA}
 
 exec 2>&1
-exec chpst -u postgres /usr/lib/postgresql/*/bin/postgres -D ${PGDATA}
+exec sudo -u postgres /usr/lib/postgresql/*/bin/postgres -D ${PGDATA}
