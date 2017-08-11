@@ -14,8 +14,8 @@ if [ ! "$(ls -A ${PGDATA})" ]; then
      sudo -u postgres psql -d template1 < /ddl
    fi
    sudo -u postgres /usr/lib/postgresql/*/bin/pg_ctl stop -m smart -D ${PGDATA}
-   sed -i -e "s|#listen_addresses =.*|listen_addresses = '*'|" /usr/local/pgsql/data/postgresql.conf
-   echo "host  all  all 0.0.0.0/0 md5" >> /usr/local/pgsql/data/pg_hba.conf
+   sed -i -e "s|#listen_addresses =.*|listen_addresses = '*'|" ${PGDATA}/postgresql.conf
+   echo "host  all  all 0.0.0.0/0 md5" >> ${PGDATA}/pg_hba.conf
 fi
 
 chown -R postgres ${PGDATA}
